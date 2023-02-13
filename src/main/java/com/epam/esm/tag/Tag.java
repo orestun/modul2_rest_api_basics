@@ -5,6 +5,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+/**
+ * @author orest uzhytchak
+ * */
 public class Tag {
 
     private int id;

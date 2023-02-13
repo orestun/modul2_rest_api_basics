@@ -22,6 +22,9 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import javax.sql.DataSource;
 import java.util.Objects;
 
+/**
+ * @author orest uzhytchak
+ * */
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.epam.esm")

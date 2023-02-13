@@ -7,6 +7,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * @author orest uzhytchak
+ * */
+
 public class GiftCertificate {
 
     private int id;

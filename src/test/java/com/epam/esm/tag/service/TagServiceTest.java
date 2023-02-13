@@ -36,8 +36,8 @@ public class TagServiceTest {
 
     @Test
     void getAllTag(){
-        List<Tag> tagListFromService = tagService.readTag();
-        List<Tag> tagListFromRepo = tagRepository.readTag();
+        List<Tag> tagListFromService = tagService.getTag();
+        List<Tag> tagListFromRepo = tagRepository.getTag();
         assertEquals(tagListFromRepo, tagListFromService);
     }
 

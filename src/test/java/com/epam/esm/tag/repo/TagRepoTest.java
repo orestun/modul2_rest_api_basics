@@ -1,15 +1,12 @@
 package com.epam.esm.tag.repo;
 
-import com.epam.esm.giftCertificate.GiftCertificateRepository;
 import com.epam.esm.tag.Tag;
 import com.epam.esm.tag.TagRepository;
-import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.csv.Csv;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -46,7 +43,7 @@ public class TagRepoTest {
 
     @Test
     void getAllTagsTest(){
-        List<Tag> tagListFromDatabase = tagRepository.readTag();
+        List<Tag> tagListFromDatabase = tagRepository.getTag();
         assertEquals(tagList, tagListFromDatabase);
     }
 
@@ -55,19 +52,19 @@ public class TagRepoTest {
         List<Tag> listWithNewTags = new java.util.ArrayList<>(tagList);
         listWithNewTags.add(new Tag(4,"testTag4"));
         tagRepository.createTag(new Tag("testTag4"));
-        assertEquals(listWithNewTags, tagRepository.readTag());
+        assertEquals(listWithNewTags, tagRepository.getTag());
         tagRepository.createTag(new Tag("testTag5"));
-        assertNotEquals(listWithNewTags, tagRepository.readTag());
+        assertNotEquals(listWithNewTags, tagRepository.getTag());
         listWithNewTags.add(new Tag(5, "testTag5"));
-        assertEquals(listWithNewTags, tagRepository.readTag());
+        assertEquals(listWithNewTags, tagRepository.getTag());
     }
 
     @Test
     void deleteTagTest(){
         List<Tag> listWitTags = new java.util.ArrayList<>(tagList);
         tagRepository.deleteTag(3);
-        assertNotEquals(listWitTags, tagRepository.readTag());
-        assertEquals(listWitTags.subList(0,2),tagRepository.readTag());
+        assertNotEquals(listWitTags, tagRepository.getTag());
+        assertEquals(listWitTags.subList(0,2),tagRepository.getTag());
     }
 
     @ParameterizedTest

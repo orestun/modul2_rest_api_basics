@@ -2,7 +2,6 @@ package com.epam.esm.giftCertificate.repo;
 
 import com.epam.esm.giftCertificate.GiftCertificate;
 import com.epam.esm.giftCertificate.GiftCertificateRepository;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +13,6 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
 
@@ -66,7 +64,7 @@ public class GiftCertificateRepoTest {
 
     @Test
     void getAllGiftCertificates(){
-        List<GiftCertificate> giftCertificateListFromRepo = giftCertificateRepository.readAllGiftCertificates();
+        List<GiftCertificate> giftCertificateListFromRepo = giftCertificateRepository.getAllGiftCertificates();
         assertEquals(giftCertificateList,giftCertificateListFromRepo);
     }
 
@@ -94,7 +92,7 @@ public class GiftCertificateRepoTest {
     void deleteGiftCertificateById(){
         List<GiftCertificate> giftCertificateListWithoutLastObject = giftCertificateList.subList(0,2);
         giftCertificateRepository.deleteGiftCertificate(3);
-        assertEquals(giftCertificateListWithoutLastObject, giftCertificateRepository.readAllGiftCertificates());
+        assertEquals(giftCertificateListWithoutLastObject, giftCertificateRepository.getAllGiftCertificates());
     }
 
     @ParameterizedTest
@@ -106,9 +104,9 @@ public class GiftCertificateRepoTest {
         Date currentDate = new Date(millis);
         GiftCertificate newGiftCertificate = new GiftCertificate(name, description, price, duration);
         giftCertificateRepository.updateGiftCertificate(id, newGiftCertificate);
-        assertNotEquals(giftCertificateList, giftCertificateRepository.readAllGiftCertificates());
+        assertNotEquals(giftCertificateList, giftCertificateRepository.getAllGiftCertificates());
         giftCertificateList.get(0).setDuration(180);
         giftCertificateList.get(0).setLastUpdateDate(currentDate);
-        assertEquals(giftCertificateList,  giftCertificateRepository.readAllGiftCertificates());
+        assertEquals(giftCertificateList,  giftCertificateRepository.getAllGiftCertificates());
     }
 }

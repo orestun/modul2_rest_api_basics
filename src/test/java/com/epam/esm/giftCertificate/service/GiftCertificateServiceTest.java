@@ -5,7 +5,6 @@ import com.epam.esm.exceptionHandler.ServerException;
 import com.epam.esm.giftCertificate.GiftCertificate;
 import com.epam.esm.giftCertificate.GiftCertificateRepository;
 import com.epam.esm.giftCertificate.GiftCertificateService;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -44,8 +43,8 @@ public class GiftCertificateServiceTest {
 
     @Test
     void getAllGiftCertificates(){
-        List<GiftCertificate> giftCertificateListFromService = giftCertificateService.readAllGiftCertificates();
-        List<GiftCertificate> giftCertificateListFromRepo = giftCertificateRepository.readAllGiftCertificates();
+        List<GiftCertificate> giftCertificateListFromService = giftCertificateService.getAllGiftCertificates();
+        List<GiftCertificate> giftCertificateListFromRepo = giftCertificateRepository.getAllGiftCertificates();
         assertEquals(giftCertificateListFromService, giftCertificateListFromRepo);
     }
 

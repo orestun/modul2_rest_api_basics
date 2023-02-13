@@ -1,5 +1,8 @@
 package com.epam.esm.giftCertificateTag;
 
+/**
+ * @author orest uzhytchak
+ * */
 public class GiftCertificateTag {
 
     private int giftCertificateId;

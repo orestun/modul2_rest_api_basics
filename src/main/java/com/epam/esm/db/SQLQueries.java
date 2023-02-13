@@ -1,5 +1,11 @@
 package com.epam.esm.db;
 
+/**
+ * @author orest uzhytchak
+ * Class that store the static nested classes
+ * that store final static fields with SQL queries
+ * that a used by repositories
+ * */
 public class SQLQueries {
     public static class GiftCertificate{
         public final static String CREATE_GIFT_CERTIFICATE = "INSERT INTO gift_certificate(name, description, price, duration, create_date, last_update_date) " +

@@ -1,0 +1,10 @@
+com.epam.esm.config
+com.epam.esm.db
+com.epam.esm.exceptionHandler
+com.epam.esm.giftCertificate
+com.epam.esm.giftCertificate.repo
+com.epam.esm.giftCertificate.service
+com.epam.esm.giftCertificateTag
+com.epam.esm.tag
+com.epam.esm.tag.repo
+com.epam.esm.tag.service
