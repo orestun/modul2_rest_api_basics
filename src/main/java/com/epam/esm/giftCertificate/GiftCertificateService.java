@@ -3,9 +3,11 @@ package com.epam.esm.giftCertificate;
 import com.epam.esm.exceptionHandler.DataValidationHandler;
 import com.epam.esm.exceptionHandler.ItemNotFoundException;
 import com.epam.esm.exceptionHandler.ServerException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.*;
 import java.util.List;
@@ -46,7 +48,10 @@ public class GiftCertificateService {
         DataValidationHandler<GiftCertificate> dataValidationHandler = new DataValidationHandler<>();
         String errors = dataValidationHandler.errorsRepresentation(giftCertificate);
         if(!errors.isEmpty()){
-            throw new ServerException(errors);
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    String.format(errors)
+            );
         }
         return giftCertificateRepository.createGiftCertificate(giftCertificate);
     }
@@ -65,10 +70,16 @@ public class GiftCertificateService {
         DataValidationHandler<GiftCertificate> dataValidationHandler = new DataValidationHandler<>();
         String errors = dataValidationHandler.errorsRepresentation(giftCertificate);
         if (giftCertificateRepository.isNotGiftCertificateById(id)){
-            throw new ItemNotFoundException(String.format("There is not such gift certificate with (id=%d)",id));
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    String.format("There is not such gift certificate with (id=%d)",id)
+            );
         }
         if(!errors.isEmpty()){
-            throw new ServerException(errors);
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    String.format(errors)
+            );
         }
         return giftCertificateRepository.updateGiftCertificate(id,giftCertificate);
     }
@@ -82,7 +93,10 @@ public class GiftCertificateService {
      * */
     public boolean deleteGiftCertificate(long id){
         if (giftCertificateRepository.isNotGiftCertificateById(id)){
-            throw new ItemNotFoundException(String.format("There is not such gift certificate with (id=%d)",id));
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    String.format("There is not such gift certificate with (id=%d)",id)
+            );
         }
         return giftCertificateRepository.deleteGiftCertificate(id);
     }

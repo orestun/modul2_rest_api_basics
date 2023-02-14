@@ -3,9 +3,11 @@ package com.epam.esm.tag;
 import com.epam.esm.exceptionHandler.DataValidationHandler;
 import com.epam.esm.exceptionHandler.ItemNotFoundException;
 import com.epam.esm.exceptionHandler.ServerException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.*;
 import java.util.List;
@@ -36,7 +38,10 @@ public class TagService {
         DataValidationHandler<Tag> dataValidationHandler = new DataValidationHandler<>();
         String errors = dataValidationHandler.errorsRepresentation(tag);
         if(!errors.isEmpty()){
-            throw new ServerException(errors);
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    String.format(errors)
+            );
         }
         return tagRepository.createTag(tag);
     }
@@ -58,7 +63,10 @@ public class TagService {
      * */
     public boolean deleteTag(long id){
         if(tagRepository.isNotTagBySuchId(id)){
-            throw new ItemNotFoundException(String.format("There is not such tag with (id = %d)",id));
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    String.format("There is not such gift certificate with (id=%d)",id)
+            );
         }
         return tagRepository.deleteTag(id);
     }
