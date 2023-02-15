@@ -4,12 +4,16 @@ import com.epam.esm.exceptionHandler.DataValidationHandler;
 import com.epam.esm.exceptionHandler.ItemNotFoundException;
 import com.epam.esm.exceptionHandler.ServerException;
 import org.springframework.http.HttpStatus;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -44,7 +48,7 @@ public class GiftCertificateService {
      * @see GiftCertificateRepository#createGiftCertificate(GiftCertificate) 
      * */
     @Transactional
-    public boolean createGiftCertificate(@Valid GiftCertificate giftCertificate){
+    public GiftCertificate createGiftCertificate(@Valid GiftCertificate giftCertificate){
         DataValidationHandler<GiftCertificate> dataValidationHandler = new DataValidationHandler<>();
         String errors = dataValidationHandler.errorsRepresentation(giftCertificate);
         if(!errors.isEmpty()){
@@ -82,6 +86,35 @@ public class GiftCertificateService {
             );
         }
         return giftCertificateRepository.updateGiftCertificate(id,giftCertificate);
+    }
+
+    public boolean updateGiftCertificateBySomeFields(long id,
+                                                     @Nullable String name,
+                                                     @Nullable String description,
+                                                     @Nullable BigDecimal price,
+                                                     @Nullable Integer duration){
+        if (giftCertificateRepository.isNotGiftCertificateById(id)){
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND,
+                    String.format("There is not such gift certificate with (id=%d)",id)
+            );
+        }
+        GiftCertificate giftCertificate = giftCertificateRepository.getGiftCertificateById(id);
+        if(name!=null && !name.equals(giftCertificate.getName())){
+            giftCertificate.setName(name);
+        }
+        if(description!=null && !description.equals(giftCertificate.getDescription())){
+            giftCertificate.setDescription(description);
+        }
+        if(price!=null && !price.equals(giftCertificate.getPrice())){
+            giftCertificate.setPrice(price);
+        }
+        if(duration!=null && !duration.equals(giftCertificate.getDuration())){
+            giftCertificate.setDuration(duration);
+        }
+
+        return giftCertificateRepository.updateGiftCertificate(id,giftCertificate);
+
     }
 
     /**

@@ -75,7 +75,7 @@ public class GiftCertificateRepoTest {
     })
     void createGiftCertificate(String name, String description, BigDecimal price, int duration, boolean expected){
         GiftCertificate giftCertificate = new GiftCertificate(name, description, price, duration);
-        assertEquals(expected, giftCertificateRepository.createGiftCertificate(giftCertificate));
+        assertEquals(expected, giftCertificateRepository.createGiftCertificate(giftCertificate).equals(giftCertificate));
     }
 
     @ParameterizedTest

@@ -15,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
+import org.springframework.web.server.ResponseStatusException;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -55,8 +56,8 @@ public class GiftCertificateServiceTest {
     })
     void dataValidationForNullValueInNameField(String name, String description, BigDecimal price, int duration) {
         GiftCertificate giftCertificate = new GiftCertificate(name, description, price, duration);
-        ServerException serverException = assertThrows(ServerException.class,() -> giftCertificateService.createGiftCertificate(giftCertificate));
-        assertEquals("Name field can't be null; ", serverException.getMessage());
+        ResponseStatusException responseStatusException = assertThrows(ResponseStatusException.class,() -> giftCertificateService.createGiftCertificate(giftCertificate));
+        assertEquals("400 BAD_REQUEST \"Name field can't be null; \"", responseStatusException.getMessage());
     }
 
 
@@ -68,8 +69,8 @@ public class GiftCertificateServiceTest {
     })
     void dataValidationForShortOrLargeValueInNameField(String name, String description, BigDecimal price, int duration) {
         GiftCertificate giftCertificate = new GiftCertificate(name, description, price, duration);
-        ServerException serverException = assertThrows(ServerException.class,() -> giftCertificateService.createGiftCertificate(giftCertificate));
-        assertEquals("You should input name with length of characters from 2 to 30; ", serverException.getMessage());
+        ResponseStatusException responseStatusException = assertThrows(ResponseStatusException.class,() -> giftCertificateService.createGiftCertificate(giftCertificate));
+        assertEquals("400 BAD_REQUEST \"You should input name with length of characters from 2 to 30; \"", responseStatusException.getMessage());
     }
 
     @ParameterizedTest
@@ -80,8 +81,8 @@ public class GiftCertificateServiceTest {
     })
     void dataValidationForNegativePriceValue(String name, String description, BigDecimal price, int duration) {
         GiftCertificate giftCertificate = new GiftCertificate(name, description, price, duration);
-        ServerException serverException = assertThrows(ServerException.class,() -> giftCertificateService.createGiftCertificate(giftCertificate));
-        assertEquals("You input a negative price number; ", serverException.getMessage());
+        ResponseStatusException responseStatusException = assertThrows(ResponseStatusException.class,() -> giftCertificateService.createGiftCertificate(giftCertificate));
+        assertEquals("400 BAD_REQUEST \"You input a negative price number; \"", responseStatusException.getMessage());
     }
 
     @ParameterizedTest
@@ -91,8 +92,8 @@ public class GiftCertificateServiceTest {
     })
     void dataValidationForNegativeDurationValue(String name, String description, BigDecimal price, int duration) {
         GiftCertificate giftCertificate = new GiftCertificate(name, description, price, duration);
-        ServerException serverException = assertThrows(ServerException.class,() -> giftCertificateService.createGiftCertificate(giftCertificate));
-        assertEquals("You input a negative duration number; ", serverException.getMessage());
+        ResponseStatusException responseStatusException = assertThrows(ResponseStatusException.class,() -> giftCertificateService.createGiftCertificate(giftCertificate));
+        assertEquals("400 BAD_REQUEST \"You input a negative duration number; \"", responseStatusException.getMessage());
     }
 
     @ParameterizedTest
@@ -126,8 +127,8 @@ public class GiftCertificateServiceTest {
     void deleteGiftCertificateByNonExistedId(long id){
         when(giftCertificateRepository.isNotGiftCertificateById(id)).thenReturn(true);
         when(giftCertificateRepository.deleteGiftCertificate(id)).thenReturn(true);
-        ItemNotFoundException itemNotFoundException = assertThrows(ItemNotFoundException.class,() -> giftCertificateService.deleteGiftCertificate(id));
-        assertEquals(String.format("There is not such gift certificate with (id=%d)",id), itemNotFoundException.getMessage());
+        ResponseStatusException responseStatusException = assertThrows(ResponseStatusException.class,() -> giftCertificateService.deleteGiftCertificate(id));
+        assertEquals(String.format("404 NOT_FOUND \"There is not such gift certificate with (id=%d)\"",id), responseStatusException.getMessage());
     }
 
 }

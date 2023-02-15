@@ -3,8 +3,11 @@ package com.epam.esm.giftCertificate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -40,7 +43,7 @@ public class GiftCertificateController {
     @PostMapping()
     public ResponseEntity<?> createNewGiftCertificate(@RequestBody GiftCertificate giftCertificate){
         giftCertificateService.createGiftCertificate(giftCertificate);
-        return ResponseEntity.ok(Map.of("Status", HttpStatus.CREATED));
+        return ResponseEntity.ok(Map.of("Created gift certificate:", giftCertificate));
     }
 
     /**
@@ -55,7 +58,23 @@ public class GiftCertificateController {
     public ResponseEntity<?> updateGiftCertificate(@PathVariable("id") long id,
                                                    @RequestBody GiftCertificate giftCertificate){
         giftCertificateService.updateGiftCertificate( id, giftCertificate);
-        return ResponseEntity.ok(Map.of("Status", HttpStatus.OK));
+        return ResponseEntity.ok(Map.of("Updated gift certificate:", giftCertificate));
+    }
+
+    @PatchMapping("update-field/{id}")
+    public ResponseEntity<?> updateGiftCertificateBySomeFields(@PathVariable("id") long id,
+                                                               @Nullable @RequestParam("name") String name,
+                                                               @Nullable @RequestParam("description") String description,
+                                                               @Nullable @RequestParam("price") BigDecimal price,
+                                                               @Nullable @RequestParam("duration") Integer duration){
+        giftCertificateService.
+                updateGiftCertificateBySomeFields(
+                        id,
+                        name,
+                        description,
+                        price,
+                        duration);
+        return ResponseEntity.ok(Map.of("Status: ", HttpStatus.OK));
     }
 
     /**

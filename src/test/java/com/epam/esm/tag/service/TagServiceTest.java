@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -45,8 +46,8 @@ public class TagServiceTest {
     void dataValidationForNullValueInNameField(){
         Tag tag = new Tag(null);
         when(tagRepository.createTag(tag)).thenReturn(true);
-        ServerException serverException = assertThrows(ServerException.class,() -> tagService.createTag(tag));
-        assertEquals("Name field can't be null; ", serverException.getMessage());
+        ResponseStatusException responseStatusException = assertThrows(ResponseStatusException.class,() -> tagService.createTag(tag));
+        assertEquals("400 BAD_REQUEST \"Name field can't be null; \"", responseStatusException.getMessage());
     }
 
     @ParameterizedTest
@@ -57,8 +58,8 @@ public class TagServiceTest {
     void dataValidationForShortOrLargeValueInNameField(String name){
         Tag tag = new Tag(name);
         when(tagRepository.createTag(tag)).thenReturn(true);
-        ServerException serverException = assertThrows(ServerException.class,() -> tagService.createTag(tag));
-        assertEquals("You should input name with length of characters from 2 to 30; ", serverException.getMessage());
+        ResponseStatusException responseStatusException = assertThrows(ResponseStatusException.class,() -> tagService.createTag(tag));
+        assertEquals("400 BAD_REQUEST \"You should input name with length of characters from 2 to 30; \"", responseStatusException.getMessage());
     }
 
 
@@ -94,7 +95,7 @@ public class TagServiceTest {
     void deleteGiftCertificateByNonExistedId(long id){
         when(tagRepository.deleteTag(id)).thenReturn(true);
         when(tagRepository.isNotTagBySuchId(id)).thenReturn(true);
-        ItemNotFoundException itemNotFoundException = assertThrows(ItemNotFoundException.class,() -> tagService.deleteTag(id));
-        assertEquals(String.format("There is not such tag with (id = %d)",id), itemNotFoundException.getMessage());
+        ResponseStatusException responseStatusException = assertThrows(ResponseStatusException.class,() -> tagService.deleteTag(id));
+        assertEquals(String.format("404 NOT_FOUND \"There is not such tag with (id=%d)\"",id), responseStatusException.getMessage());
     }
 }

@@ -65,7 +65,7 @@ public class TagService {
         if(tagRepository.isNotTagBySuchId(id)){
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND,
-                    String.format("There is not such gift certificate with (id=%d)",id)
+                    String.format("There is not such tag with (id=%d)",id)
             );
         }
         return tagRepository.deleteTag(id);
