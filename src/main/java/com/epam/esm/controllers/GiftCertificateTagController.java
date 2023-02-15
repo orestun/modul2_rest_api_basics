@@ -1,7 +1,7 @@
-package com.epam.esm.giftCertificateTag;
+package com.epam.esm.controllers;
 
-import com.epam.esm.giftCertificate.GiftCertificate;
-import com.epam.esm.giftCertificate.GiftCertificateService;
+import com.epam.esm.services.GiftCertificateTagService;
+import com.epam.esm.models.GiftCertificateTag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

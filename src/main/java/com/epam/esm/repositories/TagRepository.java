@@ -1,5 +1,7 @@
-package com.epam.esm.tag;
+package com.epam.esm.repositories;
 
+import com.epam.esm.models.Tag;
+import com.epam.esm.mappers.TagMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.epam.esm.giftCertificateTag;
+package com.epam.esm.models;
 
 /**
  * @author orest uzhytchak

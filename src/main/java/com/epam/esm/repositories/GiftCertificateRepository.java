@@ -1,6 +1,8 @@
-package com.epam.esm.giftCertificate;
+package com.epam.esm.repositories;
 
 
+import com.epam.esm.mappers.GiftCertificateMapper;
+import com.epam.esm.models.GiftCertificate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 

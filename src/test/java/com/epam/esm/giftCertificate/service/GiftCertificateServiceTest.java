@@ -1,10 +1,8 @@
 package com.epam.esm.giftCertificate.service;
 
-import com.epam.esm.exceptionHandler.ItemNotFoundException;
-import com.epam.esm.exceptionHandler.ServerException;
-import com.epam.esm.giftCertificate.GiftCertificate;
-import com.epam.esm.giftCertificate.GiftCertificateRepository;
-import com.epam.esm.giftCertificate.GiftCertificateService;
+import com.epam.esm.models.GiftCertificate;
+import com.epam.esm.repositories.GiftCertificateRepository;
+import com.epam.esm.services.GiftCertificateService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

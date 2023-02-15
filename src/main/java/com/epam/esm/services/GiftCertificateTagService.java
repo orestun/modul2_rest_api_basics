@@ -1,9 +1,8 @@
-package com.epam.esm.giftCertificateTag;
+package com.epam.esm.services;
 
-import com.epam.esm.db.SQLQueries;
-import com.epam.esm.giftCertificate.GiftCertificate;
-import com.epam.esm.giftCertificate.GiftCertificateMapper;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import com.epam.esm.models.GiftCertificate;
+import com.epam.esm.models.GiftCertificateTag;
+import com.epam.esm.repositories.GiftCertificateTagRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;

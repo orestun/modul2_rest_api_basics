@@ -1,7 +1,7 @@
 package com.epam.esm.giftCertificate.repo;
 
-import com.epam.esm.giftCertificate.GiftCertificate;
-import com.epam.esm.giftCertificate.GiftCertificateRepository;
+import com.epam.esm.models.GiftCertificate;
+import com.epam.esm.repositories.GiftCertificateRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

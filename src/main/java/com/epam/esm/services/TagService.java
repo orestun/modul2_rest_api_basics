@@ -1,8 +1,8 @@
-package com.epam.esm.tag;
+package com.epam.esm.services;
 
 import com.epam.esm.exceptionHandler.DataValidationHandler;
-import com.epam.esm.exceptionHandler.ItemNotFoundException;
-import com.epam.esm.exceptionHandler.ServerException;
+import com.epam.esm.models.Tag;
+import com.epam.esm.repositories.TagRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;

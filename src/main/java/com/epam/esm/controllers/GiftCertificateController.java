@@ -1,5 +1,7 @@
-package com.epam.esm.giftCertificate;
+package com.epam.esm.controllers;
 
+import com.epam.esm.services.GiftCertificateService;
+import com.epam.esm.models.GiftCertificate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -7,7 +9,6 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.Map;
 
 /**

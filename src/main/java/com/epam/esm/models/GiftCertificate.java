@@ -1,4 +1,4 @@
-package com.epam.esm.giftCertificate;
+package com.epam.esm.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

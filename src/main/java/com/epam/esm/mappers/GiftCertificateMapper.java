@@ -1,6 +1,6 @@
-package com.epam.esm.giftCertificate;
+package com.epam.esm.mappers;
 
-import com.epam.esm.db.SQLQueries;
+import com.epam.esm.models.GiftCertificate;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

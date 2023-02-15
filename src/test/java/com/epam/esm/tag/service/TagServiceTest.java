@@ -1,10 +1,8 @@
 package com.epam.esm.tag.service;
 
-import com.epam.esm.exceptionHandler.ItemNotFoundException;
-import com.epam.esm.exceptionHandler.ServerException;
-import com.epam.esm.tag.Tag;
-import com.epam.esm.tag.TagRepository;
-import com.epam.esm.tag.TagService;
+import com.epam.esm.models.Tag;
+import com.epam.esm.repositories.TagRepository;
+import com.epam.esm.services.TagService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

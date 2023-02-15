@@ -1,5 +1,7 @@
-package com.epam.esm.tag;
+package com.epam.esm.controllers;
 
+import com.epam.esm.models.Tag;
+import com.epam.esm.services.TagService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

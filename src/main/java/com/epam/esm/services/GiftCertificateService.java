@@ -1,15 +1,13 @@
-package com.epam.esm.giftCertificate;
+package com.epam.esm.services;
 
 import com.epam.esm.exceptionHandler.DataValidationHandler;
-import com.epam.esm.exceptionHandler.ItemNotFoundException;
-import com.epam.esm.exceptionHandler.ServerException;
+import com.epam.esm.models.GiftCertificate;
+import com.epam.esm.repositories.GiftCertificateRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.*;
@@ -66,7 +64,7 @@ public class GiftCertificateService {
      * @param id the id of object that are going to be updated
      * @param giftCertificate the object that will change current object by id
      *
-     * @see GiftCertificateRepository#updateGiftCertificate(long, GiftCertificate) 
+     * @see GiftCertificateRepository#updateGiftCertificate(long, GiftCertificate)
      * */
     @Transactional
     public boolean updateGiftCertificate(long id,

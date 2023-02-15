@@ -1,5 +1,6 @@
-package com.epam.esm.tag;
+package com.epam.esm.mappers;
 
+import com.epam.esm.models.Tag;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

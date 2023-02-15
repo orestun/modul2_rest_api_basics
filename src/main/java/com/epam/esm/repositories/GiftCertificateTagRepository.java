@@ -1,7 +1,8 @@
-package com.epam.esm.giftCertificateTag;
+package com.epam.esm.repositories;
 
-import com.epam.esm.giftCertificate.GiftCertificate;
-import com.epam.esm.giftCertificate.GiftCertificateMapper;
+import com.epam.esm.models.GiftCertificate;
+import com.epam.esm.mappers.GiftCertificateMapper;
+import com.epam.esm.models.GiftCertificateTag;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
